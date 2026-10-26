@@ -12,6 +12,7 @@ Lecture notes: https://id412.xdlab.net
 | Time Drawing | `/experiments/w1/time-drawing` | Drawing with numbers: a grid of 0–9 where the cursor's dwell time lights up and changes the numbers it stays on. |
 | 가을 낙엽 속 망고 찾기 | `/experiments/w1/mango-hunt` | A game: sweep away a pile of yellow autumn leaves and find the one mango hidden underneath. |
 | Baby Sun Grid | `/experiments/w1/baby-sun-grid-click` | The Teletubbies baby sun tiled across the screen, out of sync; click a cell to rotate, flip or invert it. |
+| S&P 500 Spheres | `/experiments/w1/sp500-spheres` | 20 years of S&P 500 daily closes in an orbitable 3D box, one sphere per trading day. |
 
 **Time Drawing — concept.** To draw something, the pen has to travel along its path. A pen passing over a spot = the pen staying there for a while = time. So: lay out a grid of numbers; where the cursor stays, the number lights up and keeps changing, and what you have drawn is left behind in numbers. Details in `app/experiments/w1/time-drawing/README.md`.
 
@@ -24,6 +25,10 @@ Lecture notes: https://id412.xdlab.net
 **Baby Sun Grid.** The Teletubbies baby sun video, cropped to a square and repeated in small cells that fill the screen. Every cell starts at a random point, so the suns rise and smile out of sync. Click a cell and it gets a new random look: turned by 90°, mirrored, and/or color-inverted. Details in `app/experiments/w1/baby-sun-grid-click/README.md`.
 
 ![Baby Sun Grid](public/experiments/w1/baby-sun-grid-click/screenshot.jpg)
+
+**S&P 500 Spheres.** Twenty years of S&P 500 daily closes (2006–2026) inside a 3D box you can orbit. Every trading day is one small teal sphere: x is time, y is the close, z is the volume, so heavy-trading days break away from the line in depth. Drag to orbit, scroll to zoom, hover a sphere to read its date, close and volume. Details in `app/experiments/w1/sp500-spheres/README.md`.
+
+![S&P 500 Spheres](public/experiments/w1/sp500-spheres/screenshot.jpg)
 
 ## Setup
 
