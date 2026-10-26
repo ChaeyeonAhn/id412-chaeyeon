@@ -2,6 +2,8 @@
 
 A dense full-screen grid of square cells showing 0–9 as neon seven-segment (digital clock) digits. Hover a cell and it becomes a timer that ticks up; move away and it freezes at that count. A color toggle in the lower right sets the two neon colors (default: white grid, pink ticking). The cursor is a hollow white ring so it never hides a number.
 
+![Time Drawing](../../../../public/experiments/w1/time-drawing/screenshot.png)
+
 - Route: /experiments/w1/time-drawing
 - Week: W1 · Tech: React state + setInterval, SVG, CSS Modules
 - Inputs: mouse hover, time, color picker

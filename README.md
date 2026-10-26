@@ -13,6 +13,8 @@ Lecture notes: https://id412.xdlab.net
 
 **Time Drawing — concept.** To draw something, the pen has to travel along its path. A pen passing over a spot = the pen staying there for a while = time. So: lay out a grid of numbers; where the cursor stays, the number lights up and keeps changing, and what you have drawn is left behind in numbers. Details in `app/experiments/w1/time-drawing/README.md`.
 
+![Time Drawing](public/experiments/w1/time-drawing/screenshot.png)
+
 ## Setup
 
 Requires Node.js LTS (24 or newer) and pnpm.
