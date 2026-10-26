@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useState, type CSSProperties } from "react";
-import ColorPicker from "./ColorPicker";
+import Controls from "./Controls";
+import RomanNumeral from "./RomanNumeral";
 import SevenSegment from "./SevenSegment";
 import styles from "./page.module.css";
 
-// A full-screen grid of square cells showing 0–9 as neon digital-clock digits.
+// A full-screen grid of square cells showing 0–9 as neon digital-clock digits (or Roman numerals).
 // Hover a cell and it turns into a timer that ticks up; leave it and it freezes.
 const CELL_SIZE = 36; // px, smaller = denser grid
 const MAX_COUNT = 100;
@@ -13,7 +14,7 @@ const INTERVAL = 100; // ms
 const DEFAULT_NEON = "#00f0ff";
 const DEFAULT_ACTIVE_NEON = "#ff2bd6";
 
-function Cell({ digit }: { digit: number }) {
+function Cell({ digit, roman }: { digit: number; roman: boolean }) {
   const [count, setCount] = useState(digit);
   const [hovered, setHovered] = useState(false);
 
@@ -38,7 +39,13 @@ function Cell({ digit }: { digit: number }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <SevenSegment value={count} className={styles.number} digitClassName={styles.digit} />
+      {roman ? (
+        <span className={styles.number}>
+          <RomanNumeral value={count} className={styles.roman} />
+        </span>
+      ) : (
+        <SevenSegment value={count} className={styles.number} digitClassName={styles.digit} />
+      )}
     </div>
   );
 }
@@ -47,6 +54,7 @@ export default function TimeInterval() {
   const [grid, setGrid] = useState({ columns: 0, rows: 0 });
   const [neon, setNeon] = useState(DEFAULT_NEON);
   const [activeNeon, setActiveNeon] = useState(DEFAULT_ACTIVE_NEON);
+  const [roman, setRoman] = useState(false);
 
   // Enough square cells to cover the window; the last row/column may be cut off.
   useEffect(() => {
@@ -63,7 +71,7 @@ export default function TimeInterval() {
 
   const cells = [];
   for (let i = 0; i < grid.columns * grid.rows; i++) {
-    cells.push(<Cell key={i} digit={i % 10} />);
+    cells.push(<Cell key={i} digit={i % 10} roman={roman} />);
   }
 
   return (
@@ -79,11 +87,13 @@ export default function TimeInterval() {
       }
     >
       {cells}
-      <ColorPicker
+      <Controls
         neon={neon}
         activeNeon={activeNeon}
+        roman={roman}
         onNeonChange={setNeon}
         onActiveNeonChange={setActiveNeon}
+        onRomanChange={setRoman}
       />
     </main>
   );
