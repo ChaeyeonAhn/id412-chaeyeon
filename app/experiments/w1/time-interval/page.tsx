@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import SevenSegment from "./SevenSegment";
 import styles from "./page.module.css";
 
-// A full-screen grid of square cells showing 0–9.
+// A full-screen grid of square cells showing 0–9 as neon digital-clock digits.
 // Hover a cell and it turns into a timer that ticks up; leave it and it freezes.
 const CELL_SIZE = 36; // px, smaller = denser grid
 const MAX_COUNT = 100;
@@ -34,7 +35,7 @@ function Cell({ digit }: { digit: number }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {count}
+      <SevenSegment value={count} className={styles.number} digitClassName={styles.digit} />
     </div>
   );
 }

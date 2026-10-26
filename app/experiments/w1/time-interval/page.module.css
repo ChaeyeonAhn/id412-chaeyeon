@@ -4,26 +4,40 @@
   display: grid;
   grid-auto-rows: 36px; /* same as CELL_SIZE in page.tsx */
   overflow: hidden;
-  background: black;
+  background: #05020a;
 }
 
+/* Untouched: dim cyan, no glow */
 .cell {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: ui-monospace, Menlo, monospace;
-  font-size: 14px;
-  color: #444;
+  color: #00f0ff;
+  opacity: 0.3;
   user-select: none;
 }
 
-/* Ticking right now */
-.active {
-  background: white;
-  color: black;
+/* Digits are SVG; segments take the cell's color. Slight slant like a real clock. */
+.number {
+  display: flex;
+  gap: 2px;
+  transform: skewX(-6deg);
 }
 
-/* Was hovered before, frozen at its last count */
+.digit {
+  height: 14px;
+  fill: currentColor;
+}
+
+/* Ticking right now: hot pink with a strong glow */
+.active {
+  color: #ff2bd6;
+  opacity: 1;
+  filter: drop-shadow(0 0 2px #ff2bd6) drop-shadow(0 0 8px #ff2bd6);
+}
+
+/* Was hovered before, frozen at its last count: bright cyan glow */
 .stopped {
-  color: white;
+  opacity: 1;
+  filter: drop-shadow(0 0 3px #00f0ff);
 }
