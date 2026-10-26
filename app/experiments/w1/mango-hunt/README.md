@@ -1,6 +1,8 @@
-# Mango Hunt
+# Mango Hunt — 가을 낙엽 속 망고 찾기
 
 A game: one pale yellow mango is hidden under a thick pile of yellow maple leaves. Drag to sweep the leaves aside, click the mango when you spot it. The time it took is shown, then play again.
+
+![가을 낙엽 속 망고 찾기](../../../../public/experiments/w1/mango-hunt/screenshot.jpg)
 
 - Route: /experiments/w1/mango-hunt
 - Week: W1 · Tech: Canvas
