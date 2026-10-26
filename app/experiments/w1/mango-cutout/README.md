@@ -1,6 +1,6 @@
 # Mango Cutout
 
-The same mango as `mango`, with the photo background (leaves, branch) removed, floating on a black full-screen page.
+A high-res photo of a mango with its background removed, floating on a black full-screen page.
 
 - Route: /experiments/w1/mango-cutout
 - Week: W1 · Tech: HTML/CSS
@@ -8,9 +8,9 @@ The same mango as `mango`, with the photo background (leaves, branch) removed, f
 - Parameters: none
 
 ## How it works
-- `public/experiments/w1/mango-cutout/mango.png` is a transparent PNG cut from `mango/mango.jpg`.
+- `public/experiments/w1/mango-cutout/mango.png` is a transparent PNG (2000×1235), cut from "Mango on white" on Wikimedia Commons.
 - The cutout was made once, offline, with macOS Vision's subject lifting (`VNGenerateForegroundInstanceMaskRequest`), the same thing as "Lift subject" in Photos. The page just shows the PNG.
-- Layout is copied from `mango`: fixed full-screen root, image centered with flexbox.
+- Fixed full-screen root, image centered with flexbox; `max-width/max-height: 100%` keeps it inside the window.
 
 ## Run
 pnpm dev → http://localhost:3000/experiments/w1/mango-cutout
