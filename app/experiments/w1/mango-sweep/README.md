@@ -11,7 +11,7 @@
 - Each mango has a position, velocity, angle, spin and width. All are random at the start.
 - While the pointer is down, `pointermove` finds the mangoes within `BRUSH` of the pointer and adds the drag delta (× `PUSH`) to their velocity. Bigger mangoes get less, so they feel heavier.
 - The `requestAnimationFrame` loop moves every mango by its velocity, then multiplies velocity and spin by `FRICTION`, so they glide to a stop.
-- `mango.png` is a 300 px copy of the sharp-edged mango-cutout image so drawing 500 of them stays fast.
+- `mango.png` is a 300 px cutout of "Mango fruit Nam Dok Mai" (Wikimedia Commons), made with macOS Vision with the edge alpha snapped to on/off. Small so drawing 500 of them stays fast.
 
 ## Run
 pnpm dev → http://localhost:3000/experiments/w1/mango-sweep
