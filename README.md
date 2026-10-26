@@ -11,6 +11,7 @@ Lecture notes: https://id412.xdlab.net
 | Time Interval | `/experiments/w1/time-interval` | A single number counting 0 → 100, then starting over. |
 | Time Drawing | `/experiments/w1/time-drawing` | Drawing with numbers: a grid of 0–9 where the cursor's dwell time lights up and changes the numbers it stays on. |
 | 가을 낙엽 속 망고 찾기 | `/experiments/w1/mango-hunt` | A game: sweep away a pile of yellow autumn leaves and find the one mango hidden underneath. |
+| Baby Sun Grid | `/experiments/w1/baby-sun-grid-click` | The Teletubbies baby sun tiled across the screen, out of sync; click a cell to rotate, flip or invert it. |
 
 **Time Drawing — concept.** To draw something, the pen has to travel along its path. A pen passing over a spot = the pen staying there for a while = time. So: lay out a grid of numbers; where the cursor stays, the number lights up and keeps changing, and what you have drawn is left behind in numbers. Details in `app/experiments/w1/time-drawing/README.md`.
 
@@ -19,6 +20,10 @@ Lecture notes: https://id412.xdlab.net
 **가을 낙엽 속 망고 찾기.** A pale yellow mango hides under 1000 yellow maple leaves. It's almost the same colour as the leaves. Drag to sweep the leaves aside, click the mango once you spot it, and see how long it took. A foldable settings panel changes how hard the sweep pushes, the brush size, friction, and how many leaves there are. Details in `app/experiments/w1/mango-hunt/README.md`.
 
 ![가을 낙엽 속 망고 찾기](public/experiments/w1/mango-hunt/screenshot.jpg)
+
+**Baby Sun Grid.** The Teletubbies baby sun video, cropped to a square and repeated in small cells that fill the screen. Every cell starts at a random point, so the suns rise and smile out of sync. Click a cell and it gets a new random look: turned by 90°, mirrored, and/or color-inverted. Details in `app/experiments/w1/baby-sun-grid-click/README.md`.
+
+![Baby Sun Grid](public/experiments/w1/baby-sun-grid-click/screenshot.jpg)
 
 ## Setup
 

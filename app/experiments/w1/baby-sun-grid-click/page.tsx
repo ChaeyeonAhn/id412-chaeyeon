@@ -3,9 +3,12 @@
 import { useEffect, useRef } from "react";
 import styles from "./page.module.css";
 
-// Like ../baby-sun-grid-random, plus: clicking a cell gives it a new random
-// look — rotated by 0/90/180/270°, maybe mirrored, maybe color-inverted.
-const VIDEO = "/experiments/w1/baby-sun-grid/baby-sun.mp4";
+// The Teletubbies baby sun video, cropped to a square and tiled in small cells
+// that fill the screen. A small pool of hidden videos plays, each started at a
+// random time, and every cell draws a randomly picked one (one <video> per
+// cell would be ~100 decoders). Clicking a cell gives it a new random look:
+// rotated by 0/90/180/270°, maybe mirrored, maybe color-inverted.
+const VIDEO = "/experiments/w1/baby-sun-grid-click/baby-sun.mp4";
 const CELL = 120; // px, target size of one square
 const POOL = 12; // how many differently-timed copies of the video play
 
