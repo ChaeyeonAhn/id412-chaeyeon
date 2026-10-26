@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
+import ColorPicker from "./ColorPicker";
 import SevenSegment from "./SevenSegment";
 import styles from "./page.module.css";
 
@@ -9,6 +10,8 @@ import styles from "./page.module.css";
 const CELL_SIZE = 36; // px, smaller = denser grid
 const MAX_COUNT = 100;
 const INTERVAL = 100; // ms
+const DEFAULT_NEON = "#00f0ff";
+const DEFAULT_ACTIVE_NEON = "#ff2bd6";
 
 function Cell({ digit }: { digit: number }) {
   const [count, setCount] = useState(digit);
@@ -42,6 +45,8 @@ function Cell({ digit }: { digit: number }) {
 
 export default function TimeInterval() {
   const [grid, setGrid] = useState({ columns: 0, rows: 0 });
+  const [neon, setNeon] = useState(DEFAULT_NEON);
+  const [activeNeon, setActiveNeon] = useState(DEFAULT_ACTIVE_NEON);
 
   // Enough square cells to cover the window; the last row/column may be cut off.
   useEffect(() => {
@@ -64,9 +69,22 @@ export default function TimeInterval() {
   return (
     <main
       className={styles.container}
-      style={{ gridTemplateColumns: `repeat(${grid.columns}, ${CELL_SIZE}px)` }}
+      // The colors are CSS variables, read by page.module.css.
+      style={
+        {
+          gridTemplateColumns: `repeat(${grid.columns}, ${CELL_SIZE}px)`,
+          "--neon": neon,
+          "--active-neon": activeNeon,
+        } as CSSProperties
+      }
     >
       {cells}
+      <ColorPicker
+        neon={neon}
+        activeNeon={activeNeon}
+        onNeonChange={setNeon}
+        onActiveNeonChange={setActiveNeon}
+      />
     </main>
   );
 }

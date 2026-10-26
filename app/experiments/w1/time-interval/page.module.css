@@ -7,12 +7,12 @@
   background: #05020a;
 }
 
-/* Untouched: dim cyan, no glow */
+/* Untouched: dim neon, no glow. --neon and --active-neon are set in page.tsx */
 .cell {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #00f0ff;
+  color: var(--neon);
   opacity: 0.3;
   user-select: none;
 }
@@ -29,15 +29,67 @@
   fill: currentColor;
 }
 
-/* Ticking right now: hot pink with a strong glow */
+/* Ticking right now: active color with a strong glow */
 .active {
-  color: #ff2bd6;
+  color: var(--active-neon);
   opacity: 1;
-  filter: drop-shadow(0 0 2px #ff2bd6) drop-shadow(0 0 8px #ff2bd6);
+  filter: drop-shadow(0 0 2px var(--active-neon)) drop-shadow(0 0 8px var(--active-neon));
 }
 
-/* Was hovered before, frozen at its last count: bright cyan glow */
+/* Was hovered before, frozen at its last count: full neon glow */
 .stopped {
   opacity: 1;
-  filter: drop-shadow(0 0 3px #00f0ff);
+  filter: drop-shadow(0 0 3px var(--neon));
+}
+
+/* Color picker, lower right. position: fixed keeps it out of the grid. */
+.picker {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 12px;
+}
+
+.toggle {
+  padding: 6px 12px;
+  border: 1px solid var(--neon);
+  border-radius: 999px;
+  background: #05020a;
+  color: var(--neon);
+  font: inherit;
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--neon);
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--neon);
+  border-radius: 8px;
+  background: #05020a;
+  color: var(--neon);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+}
+
+.row input {
+  width: 32px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
