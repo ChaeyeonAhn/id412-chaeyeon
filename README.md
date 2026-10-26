@@ -4,6 +4,15 @@ KAIST ID412 Interactive Space — Web Workshop (Web 1–3). Lecture notes and th
 
 Lecture notes: https://id412.xdlab.net
 
+## My experiments
+
+| Experiment | Route | Idea |
+| --- | --- | --- |
+| Time Interval | `/experiments/w1/time-interval` | A single number counting 0 → 100, then starting over. |
+| Time Drawing | `/experiments/w1/time-drawing` | Drawing with numbers: a grid of 0–9 where the cursor's dwell time lights up and changes the numbers it stays on. |
+
+**Time Drawing — concept.** To draw something, the pen has to travel along its path. A pen passing over a spot = the pen staying there for a while = time. So: lay out a grid of numbers; where the cursor stays, the number lights up and keeps changing, and what you have drawn is left behind in numbers. Details in `app/experiments/w1/time-drawing/README.md`.
+
 ## Setup
 
 Requires Node.js LTS (24 or newer) and pnpm.
