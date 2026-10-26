@@ -1,14 +1,29 @@
 .container {
   position: fixed;
   inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-auto-rows: 36px; /* same as CELL_SIZE in page.tsx */
+  overflow: hidden;
   background: black;
 }
 
-.counter {
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: ui-monospace, Menlo, monospace;
-  font-size: 15vw;
+  font-size: 14px;
+  color: #444;
+  user-select: none;
+}
+
+/* Ticking right now */
+.active {
+  background: white;
+  color: black;
+}
+
+/* Was hovered before, frozen at its last count */
+.stopped {
   color: white;
 }
