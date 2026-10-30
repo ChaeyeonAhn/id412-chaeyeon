@@ -4,6 +4,18 @@ KAIST ID412 Interactive Space — Web Workshop (Web 1–3). Lecture notes and th
 
 Lecture notes: https://id412.xdlab.net
 
+## Web 1 Assignment - You as Colors
+
+'나'라는 사람의 representation이 나의 겉모습이라고 한다면, 그중 가장 단순한 것은 색깔이라고 생각했다. 피부색과 머리색이 대부분을 차지하고, 그날 입은 옷에 따라 조금씩 달라지는 색들. MediaPipe가 카메라 속에서 인식한 나의 색깔 팔레트와, 그 비율이 실시간으로 변하는 모습을 시각화하는 프로젝트다.
+
+- Route: `/experiments/w1/camera-palette-views`
+- **색을 뽑는 법.** MediaPipe selfie segmenter로 카메라 화면에서 사람 픽셀만 골라내고, k-means로 대표색 5개와 각 색의 비율을 구한다. 0.5초마다 다시 계산한다.
+- **왼쪽, 떨어지는 원.** 원들이 위에서 계속 떨어져 바닥에 쌓인다. 새 원의 색은 현재 비율대로 뽑히기 때문에, 비중이 커진 색은 더 자주, 줄어든 색은 덜 들어온다. 그렇게 더미가 조금씩 지금의 내 색으로 바뀌고, 가득 차면 가장 오래된 원부터 사라진다.
+- **오른쪽, 플랩 보드.** 카페에서 지금 나오는 원두를 알려주는 split-flap 보드처럼, 색 이름과 비율, 직전 대비 ▲▼ 변화를 주식 시세판처럼 보여준다. 값이 바뀌면 글자들이 한 칸씩 착착 넘어가며 새 값에 도착한다.
+- 카메라 화면은 오른쪽 아래에 작게 띄우거나 숨길 수 있다.
+
+Details in `app/experiments/w1/camera-palette-views/README.md`.
+
 ## My experiments
 
 | Experiment | Route | Idea |
