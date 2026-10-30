@@ -11,15 +11,3 @@
   height: 100%;
   touch-action: none;
 }
-
-/* Live parameter readout, top left. Delete once the visual speaks for itself. */
-.hud {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  margin: 0;
-  font: 12px/1.6 ui-monospace, monospace;
-  color: rgba(255, 255, 255, 0.7);
-  pointer-events: none;
-  white-space: pre;
-}

@@ -1,20 +1,19 @@
 # Params Starter
 
-Starter for Web Assignment 1: a ring of colored circles that rotates and breathes, with every visual choice pulled out into a `params` object and hooked to an input. The visual is a placeholder to replace.
+Empty placeholder for Web Assignment 1: a black full-screen canvas with a running animation loop and nothing drawn yet.
 
 - Route: /experiments/w1/params-starter
-- Week: W1 · Tech: Canvas
-- Inputs: mouse position, scroll wheel, arrow keys, time
-- Parameters: count (mouse X), size (mouse Y), speed (wheel), hue (←/→)
+- Week: W1 · Tech: Canvas (placeholder; may switch to GLSL / Three.js)
+- Inputs: none yet
+- Parameters: none yet (`params` in `page.tsx` is empty)
 
 ## How it works
-- `params` at the top of `page.tsx` is the single list of parameters. Edit it first when the idea changes.
-- Input handlers only write into `params`; the `requestAnimationFrame` loop reads them every frame.
-- `time` advances by real elapsed seconds × `params.speed`, so speed 0 freezes the animation.
-- The top-left readout prints the live parameter values. Remove it when done.
+- `useEffect` sizes the canvas to the window × `devicePixelRatio` and starts a `requestAnimationFrame` loop.
+- `draw(now)` clears to black every frame; the drawing goes below that.
+- `params` at the top of `page.tsx` is where the 3–5 parameters go.
 
 ## Run
 pnpm dev → http://localhost:3000/experiments/w1/params-starter
 
 ## Status / next
-Scaffold only. Next: pick the idea, rename the folder after what it does, replace the ring in `draw()`, and update this README.
+Empty. Next: pick the idea and the input, rename the folder after what it does, fill `params` and `draw()`, update this README.
