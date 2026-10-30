@@ -2,7 +2,7 @@
 
 The colour palette of the person in the camera (mostly skin and hair, then clothes), shown live two ways side by side: falling circles on the left, a split-flap board on the right. A small camera view sits bottom right; "hide camera" / "show camera" toggles it (hidden, it still feeds the palette). Variant of `camera-reflection`.
 
-- Route: /experiments/w1/camera-palette-views
+- Route: /experiments/w1/you-as-colors
 - Week: W1 · Tech: Canvas, MediaPipe
 - Inputs: camera
 - Parameters: `colors`, `paletteEvery` (in `params` at the top of `page.tsx`)
@@ -16,7 +16,7 @@ The colour palette of the person in the camera (mostly skin and hair, then cloth
 - `canvasLoop.ts`: a full-size 2D canvas plus a `requestAnimationFrame` loop, used by the circles.
 
 ## Run
-pnpm dev → http://localhost:3000/experiments/w1/camera-palette-views (allow camera access). Before the camera starts the page is plain black with only the button.
+pnpm dev → http://localhost:3000/experiments/w1/you-as-colors (allow camera access). Before the camera starts the page is plain black with only the button.
 
 ## Status / next
 Both views render (checked with a fixed test palette). Next: check with a real camera, tune the colour names and the board timing.
