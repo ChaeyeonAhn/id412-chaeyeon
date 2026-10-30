@@ -29,3 +29,39 @@
   border-radius: 999px;
   cursor: pointer;
 }
+
+/* The person's palette, along the bottom. Each chip is as wide as its share. */
+.palette {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  gap: 4px;
+  color: #fff;
+  font-size: 12px;
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-basis: 0;
+  min-width: 0;
+}
+
+.chip {
+  height: 48px;
+  border-radius: 4px;
+}
+
+.label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 0 4px #000;
+}
+
+.note {
+  text-shadow: 0 0 4px #000;
+}
