@@ -6,6 +6,8 @@ Lecture notes: https://id412.xdlab.net
 
 ## Web 1 Assignment - You as Colors
 
+![You as Colors](public/experiments/w1/camera-palette-views/screenshot.jpg)
+
 '나'라는 사람의 representation이 나의 겉모습이라고 한다면, 그중 가장 단순한 것은 색깔이라고 생각했다. 피부색과 머리색이 대부분을 차지하고, 그날 입은 옷에 따라 조금씩 달라지는 색들. MediaPipe가 카메라 속에서 인식한 나의 색깔 팔레트와, 그 비율이 실시간으로 변하는 모습을 시각화하는 프로젝트다.
 
 - Route: `/experiments/w1/camera-palette-views`
