@@ -1,0 +1,37 @@
+.root {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Credit: mono label, bottom-right, over the shader */
+.credit {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  font-family: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 12px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #8a8a8a;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 150ms ease;
+}
+
+.credit:hover {
+  color: #227280;
+}
+
+.credit:focus-visible {
+  outline: 1px solid #227280;
+  outline-offset: 2px;
+}
