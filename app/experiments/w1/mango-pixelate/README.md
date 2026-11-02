@@ -1,22 +1,22 @@
 # Mango Pixelate
 
-A photo of a mango, stretched to the full browser width and centered on a black screen, drawn as big square pixels. A slider at the bottom right sets the pixel size; clicking a block paints it a random color.
+A photo of a mango, stretched to the full browser width and centered on a black screen, drawn as a grid of square blocks. A slider at the bottom right sets the block size, clicking a block paints it a random color, and blocks near the mouse turn into soft, rounded jelly that wobbles as the mouse moves.
 
 - Route: /experiments/w1/mango-pixelate
 - Week: W1 · Tech: Canvas
-- Inputs: slider (pixel size), click (recolor a block), window size
-- Parameters: block (16 px at start, slider from MIN_BLOCK 2 to MAX_BLOCK 80 px)
+- Inputs: mouse position (hover), click (paint a block), slider (block size), window size
+- Parameters: block (16 px at start, 2–80), JELLY_RADIUS (90 px), WOBBLE (0.02), STIFFNESS (0.15), DAMPING (0.8)
 
 ## How it works
-- The photo is drawn with `drawImage` at the browser width; its height follows the image's aspect ratio.
-- `getImageData` reads every pixel of the canvas back as an array of r, g, b, a numbers (in device pixels, so × `devicePixelRatio`).
-- The canvas is walked in `block`-sized steps. Each block is filled with `fillRect` in the color of the pixel at its center.
-- A click finds its block with `Math.floor(clientX / block)` and `Math.floor(clientY / block)`, stores a random color for it in a `Map` keyed `"column,row"`, and redraws. Clicked blocks use that color instead of the photo's. Clicking again picks a new color; changing the pixel size clears them.
-- `block` is React state, set by the slider. No animation loop: a `useEffect` redraws when the image loads, when `block` changes, and on `resize`.
-- `mango.jpg` is the 1920 px version of "Mango fruit Nam Dok Mai" (Wikimedia Commons), the same photo the mango-sweep cutout came from.
+- The photo is drawn at the browser width, read back with `getImageData`, and each cell gets the color at its center. The blocks are drawn once into an offscreen `grid` canvas that is copied to the screen every frame.
+- Clicks are saved as painted rectangles in screen px (`paints`), not as grid cells. When the grid is rebuilt for a new block size, every cell a painted rectangle overlaps takes its color, so painting survives size changes.
+- Jelly: cells within `JELLY_RADIUS` of the mouse get spring state (`sx`, `sy` scale and speed). Mouse movement squashes them (sideways → wide, up/down → tall), and every frame a spring pulls them back. Their corner radius and size follow how close the mouse is. Settled cells far from the mouse are dropped and drawn as plain squares again.
+- Jelly cells are drawn on top: black over the square first, then a `roundRect`.
+- Cell edges are rounded to whole device pixels (`cellRect`), so there are no thin seams at zoom levels like 1.8×.
+- `mango.jpg` is the 1920 px version of "Mango fruit Nam Dok Mai" (Wikimedia Commons).
 
 ## Run
 pnpm dev → http://localhost:3000/experiments/w1/mango-pixelate
 
 ## Status / next
-Works. Next: average all pixels in a block instead of the center one.
+Works. The jelly is subtle at small block sizes. Next: tune WOBBLE/STIFFNESS for a bouncier feel, or let the jelly blocks drift away from the mouse a little.
