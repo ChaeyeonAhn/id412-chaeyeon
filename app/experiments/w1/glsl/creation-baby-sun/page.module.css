@@ -1,0 +1,62 @@
+.root {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Tabs and credit: mono labels in one line along the bottom */
+.tabs {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  display: flex;
+  gap: 16px;
+}
+
+.tab,
+.credit {
+  font-family: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 12px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #8a8a8a;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 150ms ease;
+}
+
+.tab {
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.tab:hover,
+.credit:hover {
+  color: #6fa9b2;
+}
+
+/* selected tab: teal (the lighter teal, so it reads on black) */
+.tab[aria-pressed="true"] {
+  color: #6fa9b2;
+}
+
+.tab:focus-visible,
+.credit:focus-visible {
+  outline: 1px solid #6fa9b2;
+  outline-offset: 2px;
+}
+
+.credit {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+}
