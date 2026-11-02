@@ -19,7 +19,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 8px 12px;
+  padding: 6px 8px 6px 12px;
   border-radius: 6px;
   background: rgba(0, 0, 0, 0.6);
   color: #fff;
@@ -30,7 +30,30 @@
   min-width: 9ch;
 }
 
-.control input {
-  width: 160px;
+.arrows {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.arrows button {
+  width: 24px;
+  height: 16px;
+  padding: 0;
+  border: none;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 9px;
+  line-height: 16px;
   cursor: pointer;
+}
+
+.arrows button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.arrows button:disabled {
+  opacity: 0.3;
+  cursor: default;
 }
