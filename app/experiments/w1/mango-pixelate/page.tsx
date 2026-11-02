@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
 
-// A mango photo, stretched to the browser width, then pixelated into a grid of blocks.
+// A mango photo, covering the whole screen, pixelated into a grid of blocks.
 // - The ▲ ▼ buttons at the bottom right change the block size by 1 px.
 // - Click a block to give it a random color. Painted spots survive a block size change.
 const MIN_BLOCK = 2; // px
@@ -38,7 +38,7 @@ export default function MangoPixelate() {
     const paints = paintsRef.current;
     let dpr = 1;
     let cols = 0;
-    let cells: (string | null)[] = []; // one color per cell, or null where the cell is off the photo
+    let cells: string[] = []; // one color per cell
 
     // Cell edges rounded to whole device pixels, so neighbors meet without a thin seam.
     function fillCell(col: number, row: number, color: string) {
@@ -60,25 +60,26 @@ export default function MangoPixelate() {
       cols = Math.ceil(width / block);
       const rows = Math.ceil(height / block);
 
-      // 1. Draw the photo as wide as the browser, centered vertically, and read its pixels back.
-      const imageHeight = width * (image!.height / image!.width);
-      const top = (height - imageHeight) / 2;
-      ctx.fillStyle = "black";
-      ctx.fillRect(0, 0, width, height);
-      ctx.drawImage(image!, 0, top, width, imageHeight);
+      // 1. Draw the photo so it covers the whole screen (the bigger of the two scales,
+      //    centered, the overflow cropped), and read its pixels back.
+      const scale = Math.max(width / image!.width, height / image!.height);
+      const imageWidth = image!.width * scale;
+      const imageHeight = image!.height * scale;
+      ctx.drawImage(
+        image!,
+        (width - imageWidth) / 2,
+        (height - imageHeight) / 2,
+        imageWidth,
+        imageHeight,
+      );
       const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
 
-      // 2. One block per cell that covers the photo, in the color at the cell's center.
+      // 2. One block per cell, in the color at the cell's center.
       cells = [];
       for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
-          const y = row * block;
-          if (y + block <= top || y >= top + imageHeight) {
-            cells.push(null);
-            continue;
-          }
           const px = Math.min(Math.floor((col * block + block / 2) * dpr), canvas.width - 1);
-          const py = Math.min(Math.floor((y + block / 2) * dpr), canvas.height - 1);
+          const py = Math.min(Math.floor((row * block + block / 2) * dpr), canvas.height - 1);
           const i = (py * canvas.width + px) * 4;
           cells.push(`rgb(${pixels[i]}, ${pixels[i + 1]}, ${pixels[i + 2]})`);
         }
@@ -92,18 +93,15 @@ export default function MangoPixelate() {
         const row1 = Math.floor((p.y + p.size - 1) / block);
         for (let row = row0; row <= row1 && row < rows; row++) {
           for (let col = col0; col <= col1 && col < cols; col++) {
-            if (cells[row * cols + col]) cells[row * cols + col] = p.color;
+            cells[row * cols + col] = p.color;
           }
         }
       }
 
       // 4. Paint over the photo, one square per block.
-      ctx.fillStyle = "black";
-      ctx.fillRect(0, 0, width, height);
       for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
-          const color = cells[row * cols + col];
-          if (color) fillCell(col, row, color);
+          fillCell(col, row, cells[row * cols + col]);
         }
       }
     }
