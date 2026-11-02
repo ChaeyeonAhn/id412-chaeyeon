@@ -5,14 +5,23 @@ import styles from "./page.module.css";
 
 // A mango photo, stretched to the browser width, then pixelated:
 // the canvas is cut into block × block squares and each square is filled with one color.
-// The slider at the bottom right sets the block size.
+// The slider at the bottom right sets the block size. Click a block to give it a random color.
 const MIN_BLOCK = 2; // px
 const MAX_BLOCK = 80; // px
+
+function randomColor() {
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+  return `rgb(${r}, ${g}, ${b})`;
+}
 
 export default function MangoPixelate() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [image, setImage] = useState<HTMLImageElement | null>(null);
   const [block, setBlock] = useState(16); // px, size of one pixel block
+  // Clicked blocks and their new color, keyed by "column,row".
+  const clickedRef = useRef(new Map<string, string>());
 
   // Load the photo once.
   useEffect(() => {
@@ -26,6 +35,9 @@ export default function MangoPixelate() {
     if (!image) return;
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext("2d", { willReadFrequently: true })!;
+    const clicked = clickedRef.current;
+    // A new block size makes a new grid, so the old clicked colors no longer fit.
+    clicked.clear();
 
     function draw() {
       const dpr = window.devicePixelRatio || 1;
@@ -45,22 +57,37 @@ export default function MangoPixelate() {
       // 2. Read every pixel back (in device pixels: 4 numbers r, g, b, a per pixel).
       const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
 
-      // 3. Paint over it, one square per block, with the color at the block's center.
+      // 3. Paint over it, one square per block, with the color at the block's center
+      //    (or the random color, if that block was clicked).
       for (let y = 0; y < height; y += block) {
         for (let x = 0; x < width; x += block) {
           const px = Math.floor((x + block / 2) * dpr);
           const py = Math.floor((y + block / 2) * dpr);
           if (px >= canvas.width || py >= canvas.height) continue;
           const i = (py * canvas.width + px) * 4;
-          ctx.fillStyle = `rgb(${pixels[i]}, ${pixels[i + 1]}, ${pixels[i + 2]})`;
+          const key = `${x / block},${y / block}`;
+          ctx.fillStyle =
+            clicked.get(key) ?? `rgb(${pixels[i]}, ${pixels[i + 1]}, ${pixels[i + 2]})`;
           ctx.fillRect(x, y, block, block);
         }
       }
     }
 
+    // Which block is under the pointer: divide by the block size and round down.
+    function onClick(event: MouseEvent) {
+      const column = Math.floor(event.clientX / block);
+      const row = Math.floor(event.clientY / block);
+      clicked.set(`${column},${row}`, randomColor());
+      draw();
+    }
+
     draw();
     window.addEventListener("resize", draw);
-    return () => window.removeEventListener("resize", draw);
+    canvas.addEventListener("click", onClick);
+    return () => {
+      window.removeEventListener("resize", draw);
+      canvas.removeEventListener("click", onClick);
+    };
   }, [image, block]);
 
   return (
