@@ -2,6 +2,8 @@
 
 A single teal cube in an empty white scene. Drag to orbit the camera around it, scroll to zoom. A text menu at the bottom left swaps the cube's material and turns film grain on or off. In wireframe, click an area between the lines to paint it a random teal; orbit and the paint stays on the 3D faces, broken into new shapes.
 
+![Orbit Cube](../../../../public/experiments/w1/orbit-cube/screenshot.png)
+
 - Route: /experiments/w1/orbit-cube
 - Week: W1 · Tech: Three.js
 - Inputs: drag (orbit), scroll (zoom), right-drag (pan), click (paint, wireframe only), menu clicks
